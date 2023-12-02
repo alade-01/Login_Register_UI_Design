@@ -43,19 +43,21 @@ class _NewPasswordScreenState extends State<NewPasswordScreen> {
                   Text(
                     "Create new password",
                     style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                          color: primaryColor,
+                          color: secondaryColor,
                           fontSize: 24,
                           fontWeight: FontWeight.w500,
                         ),
                   ),
-                  const SizedBox(height: BUTTON_SEPARATION_SPACE * 2),
-                  Text(
-                    "Your new password must be unique from those previously used.",
-                    style: Theme.of(context).textTheme.titleMedium!.copyWith(
-                        color: secondaryColor,
-                        fontSize: 14,
-                        fontWeight: FontWeight.w400),
-                    textAlign: TextAlign.center,
+                  Padding(
+                    padding: const EdgeInsets.only(top: 5.0),
+                    child: Text(
+                      "Your new password must be unique from those previously used.",
+                      style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                          color: secondaryColor,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w300),
+                      textAlign: TextAlign.center,
+                    ),
                   ),
                   const SizedBox(height: BUTTON_SEPARATION_SPACE * 2),
                   Form(
