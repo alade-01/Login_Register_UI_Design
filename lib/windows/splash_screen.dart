@@ -57,10 +57,13 @@ class _SplashScreenState extends State<SplashScreen>
                       padding: const EdgeInsets.only(right: 5.0),
                       child: Text(
                         "Explora",
-                        style: Theme.of(context).textTheme.labelMedium!.copyWith(
-                            color: Colors.white,
-                            fontSize: 24,
-                            fontWeight: FontWeight.w700),
+                        style: Theme.of(context)
+                            .textTheme
+                            .labelMedium!
+                            .copyWith(
+                                color: Colors.white,
+                                fontSize: 24,
+                                fontWeight: FontWeight.w700),
                         textAlign: TextAlign.center,
                       ),
                     ),
