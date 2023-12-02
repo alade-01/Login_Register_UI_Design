@@ -16,17 +16,17 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   List<Map<String, String>> onboardingData = [
     {
       "title": "Explore the\nworld easily",
-      "text": "To your desire.",
+      "text": "To your desire",
       "image": "res/images/onboardingImage_1.svg"
     },
     {
       "title": "Reach the\nunknown spot",
-      "text": "To your destination.",
+      "text": "To your destination",
       "image": "res/images/onboardingImage_2.svg"
     },
     {
       "title": "Make connects\nwith explora",
-      "text": "To your dream trip.",
+      "text": "To your dream trip",
       "image": "res/images/onboardingImage_3.svg"
     },
   ];
@@ -39,7 +39,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         child: Column(
           children: <Widget>[
             Expanded(
-              flex: 3,
+              //  flex: 3,
               child: PageView.builder(
                 onPageChanged: (value) {
                   setState(() {
@@ -58,32 +58,35 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               padding: const EdgeInsets.symmetric(horizontal: 5),
               child: Column(
                 children: <Widget>[
-                  const SizedBox(height: defaultPadding * 1.5),
+                  const SizedBox(height: defaultPadding * 2),
                   Padding(
                     padding: const EdgeInsets.only(bottom: 50.0),
                     child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Row(
-                          children: List.generate(
-                      onboardingData.length,
-                          (index) => buildDot(index: index),
-                    ),
-                        ),
-                        InkWell(
-                          onTap: () => Navigator.pushNamed(context, RouterGenerator.loginRoute),
-                          child: Container(
-                            width: 50.0,
-                            height: 50.0,
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: secondaryColor,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Row(
+                            children: List.generate(
+                              onboardingData.length,
+                              (index) => buildDot(index: index),
                             ),
-                            child: Icon(Icons.arrow_forward_ios_outlined,color: Colors.white,),
                           ),
-                        )
-                      ]
-                    ),
+                          InkWell(
+                            onTap: () => Navigator.pushNamed(
+                                context, RouterGenerator.loginRoute),
+                            child: Container(
+                              width: 50.0,
+                              height: 50.0,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: secondaryColor,
+                              ),
+                              child: const Icon(
+                                Icons.arrow_forward_ios_outlined,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                        ]),
                   ),
                 ],
               ),
@@ -99,10 +102,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       duration: const Duration(milliseconds: 200),
       margin: const EdgeInsets.only(right: 5),
       height: 6,
-      width: currentPage == index ? 20 : 20,
+      width: currentPage == index ? 13 : 13,
       decoration: BoxDecoration(
-        color:
-            currentPage == index ? primaryColor : const Color(0xFF2F2E41),
+        color: currentPage == index ? primaryColor : const Color(0xFF2F2E41),
         borderRadius: BorderRadius.circular(3),
       ),
     );
