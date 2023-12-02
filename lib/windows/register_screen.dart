@@ -155,6 +155,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 keyboardType: TextInputType.text,
                               ),
                             ),
+                            const SizedBox(height: BUTTON_SEPARATION_SPACE * 1.5),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
@@ -221,8 +222,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         callback: () {
                           if (formKey.currentState!.validate()) {}
                         },
-                        label: "Next",
-                        scrIcon: Icons.arrow_forward_ios_outlined,
+                        label: "Sign up",
+                        scrIcon: Icons.app_registration,
                         buttonType: ButtonType.PRIMARY,
                         width: size.width,
                       ),
