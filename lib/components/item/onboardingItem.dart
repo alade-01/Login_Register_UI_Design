@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:login_register_ui_design/core/constants.dart';
 
 class OnboardingItem extends StatelessWidget {
   final String? title, text, image;
@@ -15,27 +16,30 @@ class OnboardingItem extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
+      //mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         Expanded(
-            child: SvgPicture.asset(
-              image!,
+            child: Center(
+              child: SvgPicture.asset(
+                image!,
+              ),
             )),
         Padding(
-          padding: const EdgeInsets.only(top: 1, bottom: 20),
+          padding: const EdgeInsets.only(top: 1, bottom: 5),
           child: Text(
             title!,
             style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                color: Color(0xFF252525), fontSize: 26, fontWeight: FontWeight.w700),
-            textAlign: TextAlign.center,
+                color: secondaryColor, fontSize: 36, fontWeight: FontWeight.w700),
+            //textAlign: TextAlign.center,
           ),
         ),
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24),
+          padding: const EdgeInsets.symmetric(horizontal: 0),
           child: Text(
             text!,
             style: Theme.of(context).textTheme.labelMedium!.copyWith(
-              color: Color(0xFF252525), fontSize: 24, fontWeight: FontWeight.w700
+              color: secondaryColor, fontSize: 24, fontWeight: FontWeight.w300
             ),
             textAlign: TextAlign.center,
           ),
