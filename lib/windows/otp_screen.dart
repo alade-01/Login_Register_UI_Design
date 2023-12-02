@@ -39,15 +39,17 @@ class _OtpsScreenState extends State<OtpsScreen> {
                           fontWeight: FontWeight.w500,
                         ),
                   ),
-                  const SizedBox(height: BUTTON_SEPARATION_SPACE * 2),
-                  Text(
-                    "Please enter the 4-digit code sent to your "
-                        "email hemmyhtec@gmail.com for verification.",
-                    style: Theme.of(context).textTheme.titleMedium!.copyWith(
-                        color: secondaryColor,
-                        fontSize: 14,
-                        fontWeight: FontWeight.w300),
-                    textAlign: TextAlign.center,
+                  Padding(
+                    padding: const EdgeInsets.only(top: 5.0),
+                    child: Text(
+                      "Please enter the 4-digit code sent to your "
+                          "email hemmyhtec@gmail.com for verification.",
+                      style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                          color: secondaryColor,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w300),
+                      textAlign: TextAlign.center,
+                    ),
                   ),
                   const SizedBox(height: BUTTON_SEPARATION_SPACE * 2),
                   Form(

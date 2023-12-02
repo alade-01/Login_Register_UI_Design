@@ -23,12 +23,12 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
     Size size = MediaQuery.of(context).size;
     return Background(
         child: Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: Column(
-            children: [
-              Expanded(
-                child: SingleChildScrollView(
-                      child: Column(
+      padding: const EdgeInsets.all(20.0),
+      child: Column(
+        children: [
+          Expanded(
+            child: SingleChildScrollView(
+              child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
@@ -36,14 +36,18 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                   Text(
                     "Forgot Password",
                     style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                        color: secondaryColor, fontSize: 24, fontWeight: FontWeight.w500),
+                        color: secondaryColor,
+                        fontSize: 24,
+                        fontWeight: FontWeight.w500),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(top: 5.0),
                     child: Text(
                       "Enter your email to receive the code to \n change your password",
                       style: Theme.of(context).textTheme.titleMedium!.copyWith(
-                          color: secondaryColor, fontSize: 14, fontWeight: FontWeight.w300),
+                          color: secondaryColor,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w300),
                       textAlign: TextAlign.center,
                     ),
                   ),
@@ -92,24 +96,24 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                   ),
                   const SizedBox(height: BUTTON_SEPARATION_SPACE * 4),
                 ],
-                      ),
-                    ),
               ),
-              InkWell(
-                onTap: () =>
-                    Navigator.pushNamed(context, RouterGenerator.loginRoute),
-                child: RichText(
-                  text: TextSpan(
-                    text: 'To come back" ',
-                    style: Theme.of(context).textTheme.labelMedium!.copyWith(
-                        fontSize: 13,
-                        color: const Color(0xFF24282C),
-                        fontWeight: FontWeight.w500),
-                  ),
-                ),
-              ),
-            ],
+            ),
           ),
-        ));
+          InkWell(
+            onTap: () =>
+                Navigator.pushNamed(context, RouterGenerator.loginRoute),
+            child: RichText(
+              text: TextSpan(
+                text: 'To come back" ',
+                style: Theme.of(context).textTheme.labelMedium!.copyWith(
+                    fontSize: 13,
+                    color: const Color(0xFF24282C),
+                    fontWeight: FontWeight.w500),
+              ),
+            ),
+          ),
+        ],
+      ),
+    ));
   }
 }
