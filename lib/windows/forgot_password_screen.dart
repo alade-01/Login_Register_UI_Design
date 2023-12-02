@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:login_register_ui_design/components/shared/background.dart';
 
 import '../../components/shared/app_button.dart';
-import '../../core/utilis.dart';
 import '../../core/constants.dart';
+import '../../core/utilis.dart';
 import '../core/router_generator.dart';
 
 class ForgotPasswordScreen extends StatefulWidget {

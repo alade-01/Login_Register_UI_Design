@@ -6,9 +6,9 @@ import 'package:login_register_ui_design/windows/welcome_screen.dart';
 
 import '../windows/forgot_password_screen.dart';
 import '../windows/new_password_screen.dart';
+import '../windows/onboarding_screen.dart';
 import '../windows/password_changed_screen.dart';
 import '../windows/splash_screen.dart';
-import '../windows/onboarding_screen.dart';
 
 class RouterGenerator {
   static const splashRoute = "/";

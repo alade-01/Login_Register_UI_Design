@@ -2,9 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../components/shared/app_button.dart';
+import '../../core/constants.dart';
 import '../../core/router_generator.dart';
 import '../../core/utilis.dart';
-import '../../core/constants.dart';
 import '../components/shared/background.dart';
 
 class RegisterScreen extends StatefulWidget {
