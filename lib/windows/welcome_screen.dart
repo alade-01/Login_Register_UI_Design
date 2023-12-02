@@ -42,9 +42,9 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               const SizedBox(height: BUTTON_SEPARATION_SPACE * 4),
               Text(
                 "Currently The Next Part of Home"
-                    " Activity & Fragementation is under development. The upcoming Part 2 is coming Soon........",
+                " Activity & Fragementation is under development. The upcoming Part 2 is coming Soon........",
                 style: Theme.of(context).textTheme.titleMedium!.copyWith(
-                  // color: swatchColorItem,
+                    color: secondaryColor,
                     fontSize: 14,
                     fontWeight: FontWeight.w400),
                 textAlign: TextAlign.center,
@@ -53,8 +53,8 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               AppButton(
                 callback: () =>
                     Navigator.pushNamed(context, RouterGenerator.loginRoute),
-                label: "Back to Login",
-                scrIcon: Icons.arrow_forward_ios_outlined,
+                label: "Logout",
+                scrIcon: Icons.logout,
                 buttonType: ButtonType.PRIMARY,
                 width: size.width * 0.9,
                 //horizontalPadding: 12.0
