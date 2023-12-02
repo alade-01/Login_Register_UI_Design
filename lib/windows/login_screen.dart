@@ -2,10 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../components/shared/app_button.dart';
+import '../../core/constants.dart';
 import '../../core/router_generator.dart';
 import '../../core/utilis.dart';
-import '../../core/constants.dart';
-import '../components/item/social_network_item.dart';
 import '../components/shared/background.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -16,6 +15,9 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  // This holds the state of the checkbox, we call setState and update this whenever a user taps the checkbox
+  bool isChecked = false;
+
   //Initially password is obscure
   bool _obscureText = true, loading = false;
 
@@ -28,42 +30,42 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Background(
-      child: Center(
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(20),
-            child: Align(
-              alignment: Alignment.center,
+      child: Padding(
+        padding: const EdgeInsets.all(20),
+        child: Column(
+          children: [
+            Expanded(
+                child: SingleChildScrollView(
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
+                  const SizedBox(height: BUTTON_SEPARATION_SPACE * 9),
                   Text(
-                    "Login here",
+                    "Welcome back",
                     style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                        color: primaryColor,
-                        fontSize: 30,
-                        fontWeight: FontWeight.w700),
+                        color: secondaryColor,
+                        fontSize: 24,
+                        fontWeight: FontWeight.w500),
                   ),
-                  const SizedBox(height: BUTTON_SEPARATION_SPACE * 2.5),
-                  Text(
-                    "Welcome back you’ve \n been missed!",
-                    style: Theme.of(context).textTheme.titleMedium!.copyWith(
-                        color: Colors.black,
-                        fontSize: 20,
-                        fontWeight: FontWeight.w600),
-                    textAlign: TextAlign.center,
+                  Padding(
+                    padding: const EdgeInsets.only(top: 5.0),
+                    child: Text(
+                      "sign in to access your account",
+                      style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                          color: secondaryColor,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w300),
+                    ),
                   ),
-                  const SizedBox(height: BUTTON_SEPARATION_SPACE * 4.5),
+                  const SizedBox(height: BUTTON_SEPARATION_SPACE * 2),
                   Form(
                     key: formKey,
                     child: Column(
                       children: [
                         Container(
-                          margin: const EdgeInsets.only(top: 10),
+                          margin: const EdgeInsets.only(top: 0),
                           child: TextFormField(
                             controller: _emailController,
-                            // style: textStyleInput,
+                            style: textStyleInput,
                             validator: (String? value) {
                               if (value != null && value.isEmpty) {
                                 return "This field is required";
@@ -79,13 +81,13 @@ class _LoginScreenState extends State<LoginScreen> {
                               prefixIcon: Icon(
                                 CupertinoIcons.at,
                               ),
-                              hintText: "Email",
+                              hintText: "Enter your email",
                             ),
                             keyboardType: TextInputType.text,
                           ),
                         ),
                         Container(
-                          margin: const EdgeInsets.symmetric(vertical: 23),
+                          margin: const EdgeInsets.symmetric(vertical: 17),
                           child: TextFormField(
                             validator: (String? value) {
                               if (value != null && value.isEmpty) {
@@ -100,7 +102,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               prefixIcon: const Icon(
                                 CupertinoIcons.lock,
                               ),
-                              hintText: "Password",
+                              hintText: "Enter your password",
                               suffixIcon: GestureDetector(
                                 onTap: () {
                                   setState(() {
@@ -118,17 +120,40 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                         ),
                         Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
+                            Row(
+                              children: [
+                                Checkbox(
+                                  activeColor: primaryColor,
+                                  value: isChecked,
+                                  onChanged: (bool? value) {
+                                    // This is where we update the state when the checkbox is tapped
+                                    setState(() {
+                                      isChecked = value!;
+                                    });
+                                  },
+                                ),
+                                Text(
+                                  "Remenber me",
+                                  textAlign: TextAlign.center,
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .labelMedium!
+                                      .copyWith(
+                                          fontSize: 13,
+                                          color: const Color(0xFF6A707C),
+                                          fontWeight: FontWeight.w400),
+                                ),
+                              ],
+                            ),
                             InkWell(
-                              onTap: () {
-                                Navigator.pushNamed(context,
-                                    RouterGenerator.forgotPasswordRoute);
-                              },
+                              onTap: () => Navigator.pushNamed(
+                                  context, RouterGenerator.forgotPasswordRoute),
                               child: Padding(
                                 padding: const EdgeInsets.all(5),
                                 child: Text(
-                                  "Forgot your password?",
+                                  "Forgot password?",
                                   textAlign: TextAlign.center,
                                   style: Theme.of(context)
                                       .textTheme
@@ -145,57 +170,47 @@ class _LoginScreenState extends State<LoginScreen> {
                       ],
                     ),
                   ),
-                  const SizedBox(height: BUTTON_SEPARATION_SPACE * 2.8),
+                  const SizedBox(height: BUTTON_SEPARATION_SPACE * 3),
                   AppButton(
                     callback: () {
-                      if (formKey.currentState!.validate()) {}
+                      if (formKey.currentState!.validate()) {
+                        Navigator.pushNamed(
+                            context, RouterGenerator.welcomeRoute);
+                      }
                     },
                     label: "Sign in",
+                    scrIcon: Icons.login_outlined,
                     buttonType: ButtonType.PRIMARY,
                     width: size.width,
-                    horizontalPadding: 10,
                   ),
-                  const SizedBox(height: BUTTON_SEPARATION_SPACE * 4),
-                  InkWell(
-                    onTap: () {
-                      Navigator.pushNamed(
-                          context, RouterGenerator.registerRoute);
-                    },
-                    child: Padding(
-                      padding: const EdgeInsets.all(0),
-                      child: Text(
-                        "Create new account",
-                        textAlign: TextAlign.center,
-                        style: Theme.of(context)
-                            .textTheme
-                            .labelMedium!
-                            .copyWith(
-                                fontSize: 14,
-                                color: const Color(0xFF494949),
-                                fontWeight: FontWeight.w600),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: BUTTON_SEPARATION_SPACE * 7),
-                  Container(
-                      margin: const EdgeInsets.symmetric(horizontal: 10),
-                      child: Text(
-                        "Or continue with",
-                        style: Theme.of(context)
-                            .textTheme
-                            .labelMedium!
-                            .copyWith(
-                                fontSize: 14,
-                                color: primaryColor,
-                                fontWeight: FontWeight.w600),
-                      )),
-                  const SizedBox(height: BUTTON_SEPARATION_SPACE),
-                  const SocialNetworkItem(),
-                  const SizedBox(height: BUTTON_SEPARATION_SPACE),
                 ],
               ),
+            )),
+            InkWell(
+              onTap: () =>
+                  Navigator.pushNamed(context, RouterGenerator.registerRoute),
+              child: RichText(
+                text: TextSpan(
+                  text: 'New Member? ',
+                  style: Theme.of(context).textTheme.labelMedium!.copyWith(
+                      fontSize: 13,
+                      color: const Color(0xFF24282C),
+                      fontWeight: FontWeight.w500),
+                  children: <TextSpan>[
+                    TextSpan(
+                        text: ' Register now',
+                        style: Theme.of(context)
+                            .textTheme
+                            .labelMedium!
+                            .copyWith(
+                                fontSize: 13,
+                                color: primaryColor,
+                                fontWeight: FontWeight.w700))
+                  ],
+                ),
+              ),
             ),
-          ),
+          ],
         ),
       ),
     );

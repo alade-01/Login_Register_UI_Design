@@ -7,7 +7,7 @@ class Background extends StatelessWidget {
   const Background({
     Key? key,
     required this.child,
-    this.topImage = "res/images/main_top.svg",
+    this.topImage = "res/images/background.svg",
   }) : super(key: key);
 
   final String topImage;
@@ -23,8 +23,8 @@ class Background extends StatelessWidget {
           alignment: Alignment.center,
           children: <Widget>[
             Positioned(
-              top: 0,
-              right: 0,
+              top:60,
+              right: 40,
               child: SvgPicture.asset(
                 topImage,
                 width: 270,

@@ -13,6 +13,7 @@ class AppButton extends StatelessWidget {
   bool solid;
   bool showBorder;
   double horizontalPadding;
+  IconData? scrIcon;
 
   AppButton({
     super.key,
@@ -20,6 +21,7 @@ class AppButton extends StatelessWidget {
     required this.label,
     this.buttonType = ButtonType.PRIMARY,
     this.width,
+    this.scrIcon,
     this.loading = false,
     this.solid = true,
     this.horizontalPadding = 0,
@@ -73,12 +75,21 @@ class AppButton extends StatelessWidget {
                                     : Colors.black,
                           ),
               ),
-              child: Text(
-                label,
-                style: Theme.of(context).textTheme.labelMedium!.copyWith(
-                    fontSize: 20,
-                    color: Colors.white,
-                    fontWeight: FontWeight.w600),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(right: 5.0),
+                    child: Text(
+                      label,
+                      style: Theme.of(context).textTheme.labelMedium!.copyWith(
+                          fontSize: 20,
+                          color: Colors.white,
+                          fontWeight: FontWeight.w600),
+                    ),
+                  ),
+                  Icon(scrIcon ,color: Colors.white,),
+                ],
               ),
             ),
     );
