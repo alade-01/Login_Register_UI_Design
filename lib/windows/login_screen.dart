@@ -6,6 +6,7 @@ import '../../core/constants.dart';
 import '../../core/router_generator.dart';
 import '../../core/utilis.dart';
 import '../components/shared/background.dart';
+
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
 
@@ -35,152 +36,153 @@ class _LoginScreenState extends State<LoginScreen> {
           children: [
             Expanded(
                 child: SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      const SizedBox(height: BUTTON_SEPARATION_SPACE * 9),
-                      Text(
-                        "Welcome back",
-                        style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                            color: secondaryColor,
-                            fontSize: 24,
-                            fontWeight: FontWeight.w500),
-                      ),   Text(
-                        "sign in to access your account",
-                        style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                            color: secondaryColor,
-                            fontSize: 14,
-                            fontWeight: FontWeight.w300),
-                      ),
-                      const SizedBox(height: BUTTON_SEPARATION_SPACE * 2),
-                      Form(
-                        key: formKey,
-                        child: Column(
+              child: Column(
+                children: [
+                  const SizedBox(height: BUTTON_SEPARATION_SPACE * 9),
+                  Text(
+                    "Welcome back",
+                    style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                        color: secondaryColor,
+                        fontSize: 24,
+                        fontWeight: FontWeight.w500),
+                  ),
+                  Text(
+                    "sign in to access your account",
+                    style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                        color: secondaryColor,
+                        fontSize: 14,
+                        fontWeight: FontWeight.w300),
+                  ),
+                  const SizedBox(height: BUTTON_SEPARATION_SPACE * 2),
+                  Form(
+                    key: formKey,
+                    child: Column(
+                      children: [
+                        Container(
+                          margin: const EdgeInsets.only(top: 0),
+                          child: TextFormField(
+                            controller: _emailController,
+                            style: textStyleInput,
+                            validator: (String? value) {
+                              if (value != null && value.isEmpty) {
+                                return "This field is required";
+                              }
+                              if (value != null &&
+                                  value.isNotEmpty &&
+                                  !StringUtil.isValidEmail(value)) {
+                                return "The email is invalid";
+                              }
+                              return null;
+                            },
+                            decoration: const InputDecoration(
+                              prefixIcon: Icon(
+                                CupertinoIcons.at,
+                              ),
+                              hintText: "Enter your email",
+                            ),
+                            keyboardType: TextInputType.text,
+                          ),
+                        ),
+                        Container(
+                          margin: const EdgeInsets.symmetric(vertical: 17),
+                          child: TextFormField(
+                            validator: (String? value) {
+                              if (value != null && value.isEmpty) {
+                                return "This field is required";
+                              }
+                              return null;
+                            },
+                            style: textStyleInput,
+                            controller: _passwordController,
+                            obscureText: _obscureText,
+                            decoration: InputDecoration(
+                              prefixIcon: const Icon(
+                                CupertinoIcons.lock,
+                              ),
+                              hintText: "Enter your password",
+                              suffixIcon: GestureDetector(
+                                onTap: () {
+                                  setState(() {
+                                    _obscureText = !_obscureText;
+                                  });
+                                },
+                                child: Icon(
+                                  _obscureText
+                                      ? Icons.visibility_off
+                                      : Icons.visibility,
+                                ),
+                              ),
+                            ),
+                            keyboardType: TextInputType.text,
+                          ),
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Container(
-                              margin: const EdgeInsets.only(top: 0),
-                              child: TextFormField(
-                                controller: _emailController,
-                                style: textStyleInput,
-                                validator: (String? value) {
-                                  if (value != null && value.isEmpty) {
-                                    return "This field is required";
-                                  }
-                                  if (value != null &&
-                                      value.isNotEmpty &&
-                                      !StringUtil.isValidEmail(value)) {
-                                    return "The email is invalid";
-                                  }
-                                  return null;
-                                },
-                                decoration: const InputDecoration(
-                                  prefixIcon: Icon(
-                                    CupertinoIcons.at,
-                                  ),
-                                  hintText: "Enter your email",
-                                ),
-                                keyboardType: TextInputType.text,
-                              ),
-                            ),
-                            Container(
-                              margin: const EdgeInsets.symmetric(vertical: 17),
-                              child: TextFormField(
-                                validator: (String? value) {
-                                  if (value != null && value.isEmpty) {
-                                    return "This field is required";
-                                  }
-                                  return null;
-                                },
-                                style: textStyleInput,
-                                controller: _passwordController,
-                                obscureText: _obscureText,
-                                decoration: InputDecoration(
-                                  prefixIcon: const Icon(
-                                    CupertinoIcons.lock,
-                                  ),
-                                  hintText: "Enter your password",
-                                  suffixIcon: GestureDetector(
-                                    onTap: () {
-                                      setState(() {
-                                        _obscureText = !_obscureText;
-                                      });
-                                    },
-                                    child: Icon(
-                                      _obscureText
-                                          ? Icons.visibility_off
-                                          : Icons.visibility,
-                                    ),
-                                  ),
-                                ),
-                                keyboardType: TextInputType.text,
-                              ),
-                            ),
                             Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Row(
-                                  children: [
-                                    Checkbox(
-                                      activeColor: primaryColor,
-                                      value: isChecked,
-                                      onChanged: (bool? value) {
-                                        // This is where we update the state when the checkbox is tapped
-                                        setState(() {
-                                          isChecked = value!;
-                                        });
-                                      },
-                                    ),
-                                    Text(
-                                      "Remenber me",
-                                      textAlign: TextAlign.center,
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .labelMedium!
-                                          .copyWith(
+                                Checkbox(
+                                  activeColor: primaryColor,
+                                  value: isChecked,
+                                  onChanged: (bool? value) {
+                                    // This is where we update the state when the checkbox is tapped
+                                    setState(() {
+                                      isChecked = value!;
+                                    });
+                                  },
+                                ),
+                                Text(
+                                  "Remenber me",
+                                  textAlign: TextAlign.center,
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .labelMedium!
+                                      .copyWith(
                                           fontSize: 13,
                                           color: const Color(0xFF6A707C),
                                           fontWeight: FontWeight.w400),
-                                    ),
-                                  ],
-                                ),
-
-                                InkWell(
-                                  onTap: () => Navigator.pushNamed(
-                                      context, RouterGenerator.forgotPasswordRoute),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(5),
-                                    child: Text(
-                                      "Forgot password?",
-                                      textAlign: TextAlign.center,
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .labelMedium!
-                                          .copyWith(
-                                          fontSize: 14,
-                                          color: primaryColor,
-                                          fontWeight: FontWeight.w600),
-                                    ),
-                                  ),
                                 ),
                               ],
                             ),
+                            InkWell(
+                              onTap: () => Navigator.pushNamed(
+                                  context, RouterGenerator.forgotPasswordRoute),
+                              child: Padding(
+                                padding: const EdgeInsets.all(5),
+                                child: Text(
+                                  "Forgot password?",
+                                  textAlign: TextAlign.center,
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .labelMedium!
+                                      .copyWith(
+                                          fontSize: 14,
+                                          color: primaryColor,
+                                          fontWeight: FontWeight.w600),
+                                ),
+                              ),
+                            ),
                           ],
                         ),
-                      ),
-                      const SizedBox(height: BUTTON_SEPARATION_SPACE * 3),
-                      AppButton(
-                        callback: () {
-                          if (formKey.currentState!.validate()) {
-                            Navigator.pushNamed(context, RouterGenerator.welcomeRoute);
-                          }
-                        },
-                        label: "Next",
-                        scrIcon: Icons.arrow_forward_ios_outlined,
-                        buttonType: ButtonType.PRIMARY,
-                        width: size.width,
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                )),
+                  const SizedBox(height: BUTTON_SEPARATION_SPACE * 3),
+                  AppButton(
+                    callback: () {
+                      if (formKey.currentState!.validate()) {
+                        Navigator.pushNamed(
+                            context, RouterGenerator.welcomeRoute);
+                      }
+                    },
+                    label: "Sign in",
+                    scrIcon: Icons.login_outlined,
+                    buttonType: ButtonType.PRIMARY,
+                    width: size.width,
+                  ),
+                ],
+              ),
+            )),
             InkWell(
               onTap: () =>
                   Navigator.pushNamed(context, RouterGenerator.registerRoute),
@@ -198,9 +200,9 @@ class _LoginScreenState extends State<LoginScreen> {
                             .textTheme
                             .labelMedium!
                             .copyWith(
-                            fontSize: 13,
-                            color: primaryColor,
-                            fontWeight: FontWeight.w700))
+                                fontSize: 13,
+                                color: primaryColor,
+                                fontWeight: FontWeight.w700))
                   ],
                 ),
               ),
