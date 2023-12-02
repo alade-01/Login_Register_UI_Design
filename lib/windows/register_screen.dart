@@ -5,7 +5,6 @@ import '../../components/shared/app_button.dart';
 import '../../core/router_generator.dart';
 import '../../core/utilis.dart';
 import '../../core/constants.dart';
-import '../components/item/social_network_item.dart';
 import '../components/shared/background.dart';
 
 class RegisterScreen extends StatefulWidget {
@@ -16,6 +15,8 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
+  // This holds the state of the checkbox, we call setState and update this whenever a user taps the checkbox
+  bool isChecked = false;
   //Initially password is obscure
   bool _obscureTextFieldOne = true,
       _obscureTextFieldTwo = true,
@@ -31,189 +32,228 @@ class _RegisterScreenState extends State<RegisterScreen> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Background(
-      child: Center(
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(20),
-            child: Align(
-              alignment: Alignment.center,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Padding(
-                      padding: const EdgeInsets.only(top: 20),
-                      child: Text(
-                        "Create Account",
+      child: Padding(
+        padding: const EdgeInsets.all(20),
+        child: Column(
+          children: [
+            Expanded(
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      const SizedBox(height: BUTTON_SEPARATION_SPACE * 9),
+                      Text(
+                        "Get Started",
                         style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                            color: primaryColor,
-                            fontSize: 30,
-                            fontWeight: FontWeight.w700),
-                      )),
-                  const SizedBox(height: BUTTON_SEPARATION_SPACE * 1.5),
-                  Text(
-                    "Create an account so you can explore "
-                    "all the existing jobs",
-                    style: Theme.of(context).textTheme.titleMedium!.copyWith(
-                        color: Colors.black,
-                        fontSize: 14,
-                        fontWeight: FontWeight.w500),
-                    textAlign: TextAlign.center,
-                  ),
-                  const SizedBox(height: BUTTON_SEPARATION_SPACE * 4),
-                  Form(
-                    key: formKey,
-                    child: Column(
-                      children: [
-                        Container(
-                          margin: const EdgeInsets.only(top: 5),
-                          child: TextFormField(
-                            controller: _emailController,
-                            style: textStyleInput,
-                            validator: (String? value) {
-                              if (value != null && value.isEmpty) {
-                                return "This field is required";
-                              }
-                              if (value != null &&
-                                  value.isNotEmpty &&
-                                  !StringUtil.isValidEmail(value)) {
-                                return "The email is invalid";
-                              }
-                              return null;
-                            },
-                            decoration: const InputDecoration(
-                              prefixIcon: Icon(
-                                CupertinoIcons.at,
-                              ),
-                              hintText: "Email",
-                            ),
-                            keyboardType: TextInputType.text,
-                          ),
-                        ),
-                        Container(
-                          margin: const EdgeInsets.symmetric(vertical: 23),
-                          child: TextFormField(
-                            validator: (String? value) {
-                              if (value != null && value.isEmpty) {
-                                return "This field is required";
-                              }
-                              return null;
-                            },
-                            style: textStyleInput,
-                            controller: _passwordController,
-                            obscureText: _obscureTextFieldOne,
-                            decoration: InputDecoration(
-                              prefixIcon: const Icon(
-                                CupertinoIcons.lock,
-                              ),
-                              hintText: "Password",
-                              suffixIcon: GestureDetector(
-                                onTap: () {
-                                  setState(() {
-                                    _obscureTextFieldOne =
-                                        !_obscureTextFieldOne;
-                                  });
-                                },
-                                child: Icon(
-                                  _obscureTextFieldOne
-                                      ? Icons.visibility_off
-                                      : Icons.visibility,
-                                ),
-                              ),
-                            ),
-                            keyboardType: TextInputType.text,
-                          ),
-                        ),
-                        Container(
-                          child: TextFormField(
-                            validator: (String? value) {
-                              if (value != null && value.isEmpty) {
-                                return "This field is required";
-                              }
-                              if (value !=
-                                  _passwordController.text) {
-                                return "Different password";
-                              }
-                              return null;
-                            },
-                            style: textStyleInput,
-                            controller: _passwordControllerConfirm,
-                            obscureText: _obscureTextFieldTwo,
-                            decoration: InputDecoration(
-                              prefixIcon: const Icon(
-                                CupertinoIcons.lock,
-                              ),
-                              hintText: "Confirm Password",
-                              suffixIcon: GestureDetector(
-                                onTap: () {
-                                  setState(() {
-                                    _obscureTextFieldTwo =
-                                        !_obscureTextFieldTwo;
-                                  });
-                                },
-                                child: Icon(
-                                  _obscureTextFieldTwo
-                                      ? Icons.visibility_off
-                                      : Icons.visibility,
-                                ),
-                              ),
-                            ),
-                            keyboardType: TextInputType.text,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(height: BUTTON_SEPARATION_SPACE * 4.8),
-                  AppButton(
-                    callback: () {
-                      if (formKey.currentState!.validate()) {}
-                    },
-                    label: "Sign up",
-                    buttonType: ButtonType.PRIMARY,
-                    width: size.width,
-                    horizontalPadding: 0,
-                  ),
-                  const SizedBox(height: BUTTON_SEPARATION_SPACE * 3.5),
-                  InkWell(
-                    onTap: () {
-                      Navigator.pushNamed(context, RouterGenerator.loginRoute);
-                    },
-                    child: Padding(
-                      padding: const EdgeInsets.all(0),
-                      child: Text(
-                        "Already have an account",
-                        textAlign: TextAlign.center,
-                        style: Theme.of(context)
-                            .textTheme
-                            .labelMedium!
-                            .copyWith(
-                                fontSize: 14,
-                                color: const Color(0xFF494949),
-                                fontWeight: FontWeight.w600),
+                            color: secondaryColor,
+                            fontSize: 24,
+                            fontWeight: FontWeight.w500),
+                      ),   Text(
+                        "by creating a free account",
+                        style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                            color: secondaryColor,
+                            fontSize: 14,
+                            fontWeight: FontWeight.w300),
                       ),
-                    ),
+                      const SizedBox(height: BUTTON_SEPARATION_SPACE * 2),
+                      Form(
+                        key: formKey,
+                        child: Column(
+                          children: [
+                            Container(
+                              margin: const EdgeInsets.only(top: 5),
+                              child: TextFormField(
+                                controller: _emailController,
+                                style: textStyleInput,
+                                validator: (String? value) {
+                                  if (value != null && value.isEmpty) {
+                                    return "This field is required";
+                                  }
+                                  if (value != null &&
+                                      value.isNotEmpty &&
+                                      !StringUtil.isValidEmail(value)) {
+                                    return "The email is invalid";
+                                  }
+                                  return null;
+                                },
+                                decoration: const InputDecoration(
+                                  prefixIcon: Icon(
+                                    CupertinoIcons.at,
+                                  ),
+                                  hintText: "Email",
+                                ),
+                                keyboardType: TextInputType.text,
+                              ),
+                            ),
+                            Container(
+                              margin: const EdgeInsets.symmetric(vertical: 23),
+                              child: TextFormField(
+                                validator: (String? value) {
+                                  if (value != null && value.isEmpty) {
+                                    return "This field is required";
+                                  }
+                                  return null;
+                                },
+                                style: textStyleInput,
+                                controller: _passwordController,
+                                obscureText: _obscureTextFieldOne,
+                                decoration: InputDecoration(
+                                  prefixIcon: const Icon(
+                                    CupertinoIcons.lock,
+                                  ),
+                                  hintText: "Password",
+                                  suffixIcon: GestureDetector(
+                                    onTap: () {
+                                      setState(() {
+                                        _obscureTextFieldOne =
+                                        !_obscureTextFieldOne;
+                                      });
+                                    },
+                                    child: Icon(
+                                      _obscureTextFieldOne
+                                          ? Icons.visibility_off
+                                          : Icons.visibility,
+                                    ),
+                                  ),
+                                ),
+                                keyboardType: TextInputType.text,
+                              ),
+                            ),
+                            Container(
+                              child: TextFormField(
+                                validator: (String? value) {
+                                  if (value != null && value.isEmpty) {
+                                    return "This field is required";
+                                  }
+                                  if (value !=
+                                      _passwordController.text) {
+                                    return "Different password";
+                                  }
+                                  return null;
+                                },
+                                style: textStyleInput,
+                                controller: _passwordControllerConfirm,
+                                obscureText: _obscureTextFieldTwo,
+                                decoration: InputDecoration(
+                                  prefixIcon: const Icon(
+                                    CupertinoIcons.lock,
+                                  ),
+                                  hintText: "Confirm Password",
+                                  suffixIcon: GestureDetector(
+                                    onTap: () {
+                                      setState(() {
+                                        _obscureTextFieldTwo =
+                                        !_obscureTextFieldTwo;
+                                      });
+                                    },
+                                    child: Icon(
+                                      _obscureTextFieldTwo
+                                          ? Icons.visibility_off
+                                          : Icons.visibility,
+                                    ),
+                                  ),
+                                ),
+                                keyboardType: TextInputType.text,
+                              ),
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Checkbox(
+                                  activeColor: primaryColor,
+                                  value: isChecked,
+                                  onChanged: (bool? value) {
+                                    // This is where we update the state when the checkbox is tapped
+                                    setState(() {
+                                      isChecked = value!;
+                                    });
+                                  },
+                                ),
+                                Flexible(
+                                  child: RichText(
+                                    text: TextSpan(
+                                      text: 'By checking the box you agree to our ',
+                                      style: Theme.of(context).textTheme.labelMedium!.copyWith(
+                                          fontSize: 13,
+                                          color: const Color(0xFF24282C),
+                                          fontWeight: FontWeight.w500),
+                                      children: <TextSpan>[
+                                        TextSpan(
+                                            text: 'Teams',
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .labelMedium!
+                                                .copyWith(
+                                                fontSize: 13,
+                                                color: primaryColor,
+                                                fontWeight: FontWeight.w300)
+                                        ),
+                                        TextSpan(
+                                            text: 'and ',
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .labelMedium!
+                                                .copyWith(
+                                                fontSize: 13,
+                                                color: secondaryColor,
+                                                fontWeight: FontWeight.w300)
+                                        ),
+                                        TextSpan(
+                                            text: 'Conditions ',
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .labelMedium!
+                                                .copyWith(
+                                                fontSize: 13,
+                                                color: primaryColor,
+                                                fontWeight: FontWeight.w300)
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(height: BUTTON_SEPARATION_SPACE * 3),
+                      AppButton(
+                        callback: () {
+                          if (formKey.currentState!.validate()) {}
+                        },
+                        label: "Next",
+                        scrIcon: Icons.arrow_forward_ios_outlined,
+                        buttonType: ButtonType.PRIMARY,
+                        width: size.width,
+                      ),
+                    ],
                   ),
-                  const SizedBox(height: BUTTON_SEPARATION_SPACE * 6.5),
-                  Container(
-                      margin: const EdgeInsets.symmetric(horizontal: 10),
-                      child: Text(
-                        "Or continue with",
+                )),
+            InkWell(
+              onTap: () =>
+                  Navigator.pushNamed(context, RouterGenerator.loginRoute),
+              child: RichText(
+                text: TextSpan(
+                  text: 'Already a member? ',
+                  style: Theme.of(context).textTheme.labelMedium!.copyWith(
+                      fontSize: 13,
+                      color: const Color(0xFF24282C),
+                      fontWeight: FontWeight.w500),
+                  children: <TextSpan>[
+                    TextSpan(
+                        text: 'Log In',
                         style: Theme.of(context)
                             .textTheme
                             .labelMedium!
                             .copyWith(
-                                fontSize: 14,
-                                color: primaryColor,
-                                fontWeight: FontWeight.w600),
-                      )),
-                  const SizedBox(height: BUTTON_SEPARATION_SPACE * 2),
-                  const SocialNetworkItem(),
-                  const SizedBox(height: BUTTON_SEPARATION_SPACE),
-                ],
+                            fontSize: 13,
+                            color: primaryColor,
+                            fontWeight: FontWeight.w700))
+                  ],
+                ),
               ),
             ),
-          ),
+          ],
         ),
       ),
     );

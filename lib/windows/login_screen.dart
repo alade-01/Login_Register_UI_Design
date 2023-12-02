@@ -5,7 +5,6 @@ import '../../components/shared/app_button.dart';
 import '../../core/constants.dart';
 import '../../core/router_generator.dart';
 import '../../core/utilis.dart';
-import '../components/item/social_network_item.dart';
 import '../components/shared/background.dart';
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -15,6 +14,9 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  // This holds the state of the checkbox, we call setState and update this whenever a user taps the checkbox
+  bool isChecked = false;
+
   //Initially password is obscure
   bool _obscureText = true, loading = false;
 
@@ -35,7 +37,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 child: SingleChildScrollView(
                   child: Column(
                     children: [
-                      const SizedBox(height: BUTTON_SEPARATION_SPACE * 4),
+                      const SizedBox(height: BUTTON_SEPARATION_SPACE * 9),
                       Text(
                         "Welcome back",
                         style: Theme.of(context).textTheme.titleLarge!.copyWith(
@@ -113,8 +115,34 @@ class _LoginScreenState extends State<LoginScreen> {
                               ),
                             ),
                             Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
+                                Row(
+                                  children: [
+                                    Checkbox(
+                                      activeColor: primaryColor,
+                                      value: isChecked,
+                                      onChanged: (bool? value) {
+                                        // This is where we update the state when the checkbox is tapped
+                                        setState(() {
+                                          isChecked = value!;
+                                        });
+                                      },
+                                    ),
+                                    Text(
+                                      "Remenber me",
+                                      textAlign: TextAlign.center,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .labelMedium!
+                                          .copyWith(
+                                          fontSize: 13,
+                                          color: const Color(0xFF6A707C),
+                                          fontWeight: FontWeight.w400),
+                                    ),
+                                  ],
+                                ),
+
                                 InkWell(
                                   onTap: () => Navigator.pushNamed(
                                       context, RouterGenerator.forgotPasswordRoute),
@@ -128,7 +156,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                           .labelMedium!
                                           .copyWith(
                                           fontSize: 14,
-                                          color: const Color(0xFF6A707C),
+                                          color: primaryColor,
                                           fontWeight: FontWeight.w600),
                                     ),
                                   ),
@@ -141,7 +169,9 @@ class _LoginScreenState extends State<LoginScreen> {
                       const SizedBox(height: BUTTON_SEPARATION_SPACE * 3),
                       AppButton(
                         callback: () {
-                          if (formKey.currentState!.validate()) {}
+                          if (formKey.currentState!.validate()) {
+                            Navigator.pushNamed(context, RouterGenerator.welcomeRoute);
+                          }
                         },
                         label: "Next",
                         scrIcon: Icons.arrow_forward_ios_outlined,
@@ -151,7 +181,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ],
                   ),
                 )),
-            GestureDetector(
+            InkWell(
               onTap: () =>
                   Navigator.pushNamed(context, RouterGenerator.registerRoute),
               child: RichText(

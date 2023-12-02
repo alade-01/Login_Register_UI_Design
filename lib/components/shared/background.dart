@@ -23,8 +23,8 @@ class Background extends StatelessWidget {
           alignment: Alignment.center,
           children: <Widget>[
             Positioned(
-              top: 0,
-              right: 0,
+              top:60,
+              right: 40,
               child: SvgPicture.asset(
                 topImage,
                 width: 270,

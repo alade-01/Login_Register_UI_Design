@@ -65,7 +65,7 @@ class ThemeCubit extends Cubit<ThemeData> {
     ),
     inputDecorationTheme: InputDecorationTheme(
       filled: true,
-      fillColor: const Color(0xFFF1F4FF),
+      fillColor: const Color(0xFFC4C4C4).withOpacity(0.2),
       //constraints: const BoxConstraints(maxHeight: 65),
 
       // labelStyle: TextStyle(
@@ -91,9 +91,9 @@ class ThemeCubit extends Cubit<ThemeData> {
       // focusColor: secondaryColor,
 
       hintStyle: TextStyle(
-        fontSize: 16,
-        fontWeight: FontWeight.w500,
-        color: secondaryColor,
+        fontSize: 14,
+        fontWeight: FontWeight.w300,
+        color: Colors.black.withOpacity(0.5),
       ),
       errorStyle: const TextStyle(
           fontSize: 12, fontFamily: PRIMARY_FONT, color: Colors.redAccent),
