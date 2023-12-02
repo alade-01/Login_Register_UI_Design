@@ -16,7 +16,6 @@ class OnboardingItem extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Column(
-      //mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         Expanded(
@@ -31,7 +30,6 @@ class OnboardingItem extends StatelessWidget {
             title!,
             style: Theme.of(context).textTheme.titleLarge!.copyWith(
                 color: secondaryColor, fontSize: 36, fontWeight: FontWeight.w700),
-            //textAlign: TextAlign.center,
           ),
         ),
         Padding(

@@ -57,7 +57,6 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 scrIcon: Icons.logout,
                 buttonType: ButtonType.PRIMARY,
                 width: size.width * 0.9,
-                //horizontalPadding: 12.0
               ),
             ],
           ),
