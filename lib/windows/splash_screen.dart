@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:login_register_ui_design/components/shared/background.dart';
 import 'package:login_register_ui_design/core/constants.dart';
 
 import '../core/router_generator.dart';
@@ -30,7 +29,7 @@ class _SplashScreenState extends State<SplashScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFF6C63FF),
+      backgroundColor: primaryColor,
       body: Stack(
         children: [
           Positioned(
@@ -45,20 +44,44 @@ class _SplashScreenState extends State<SplashScreen>
                   MediaQuery.of(context).size.width * (startAnimated ? .5 : .0),
               height:
                   MediaQuery.of(context).size.width * (startAnimated ? .5 : .0),
-              child: SvgPicture.asset(
-                "res/images/splashIcon.svg",
-                width: 70,
-                fit: BoxFit.contain,
-              ),
+              child: Wrap(children: [
+                SvgPicture.asset(
+                  "res/images/splashIcon.svg",
+                  width: 200,
+                  height: 152.16,
+                  fit: BoxFit.contain,
+                ),
+                Row(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(right: 5.0),
+                      child: Text(
+                        "Explora",
+                        style: Theme.of(context).textTheme.labelMedium!.copyWith(
+                            color: Colors.white,
+                            fontSize: 24,
+                            fontWeight: FontWeight.w700),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                    SvgPicture.asset(
+                      "res/images/splashIconSecond.svg",
+                      width: 40,
+                      height: 16.59,
+                      fit: BoxFit.contain,
+                    ),
+                  ],
+                )
+              ]),
             ),
           ),
-          Positioned(
-            top: 180,
+          const Positioned(
+            top: 250,
             bottom: 0,
             right: 0,
             left: 0,
             child: Center(
-              child: CircularProgressIndicator(color: primaryColor),
+              child: CircularProgressIndicator(color: Colors.white),
             ),
           ),
           Positioned(
@@ -68,9 +91,9 @@ class _SplashScreenState extends State<SplashScreen>
             child: Column(
               children: [
                 Text(
-                  "Welcome to GoodJob",
+                  "Welcome to Explora",
                   style: Theme.of(context).textTheme.labelMedium!.copyWith(
-                      color: Colors.black,
+                      color: Colors.white,
                       fontSize: 14,
                       fontWeight: FontWeight.w600),
                 ),
