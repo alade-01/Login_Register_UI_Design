@@ -7,15 +7,15 @@ import '../../../core/constants.dart';
 class AppButton extends StatelessWidget {
   final Function? callback;
   final String label;
-  ButtonType? buttonType;
-  double? width;
-  bool loading;
-  bool solid;
-  bool showBorder;
-  double horizontalPadding;
-  IconData? scrIcon;
+  final ButtonType? buttonType;
+  final double? width;
+  final bool loading;
+  final bool solid;
+  final bool showBorder;
+  final double horizontalPadding;
+  final IconData? scrIcon;
 
-  AppButton({
+  const AppButton({
     super.key,
     this.callback,
     required this.label,

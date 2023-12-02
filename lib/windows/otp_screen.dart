@@ -74,7 +74,6 @@ class _OtpsScreenState extends State<OtpsScreen> {
                                   FocusScope.of(context).nextFocus();
                                 }
                               },
-                              // onSaved: (pin1){},
                               decoration: const InputDecoration(hintText: "0"),
                               style: Theme.of(context)
                                   .textTheme
@@ -98,9 +97,10 @@ class _OtpsScreenState extends State<OtpsScreen> {
                   const SizedBox(height: BUTTON_SEPARATION_SPACE * 4),
                   AppButton(
                     callback: () {
-                      if (formKey.currentState!.validate()) {
-                        Navigator.pushNamed(context, RouterGenerator.newPasswordRoute);
-                      }
+                      Navigator.pushNamed(context, RouterGenerator.newPasswordRoute);
+                      // if (formKey.currentState!.validate()) {
+                      //   Navigator.pushNamed(context, RouterGenerator.newPasswordRoute);
+                      // }
                     },
                     label: "Verify",
                     scrIcon: Icons.arrow_forward_ios_outlined,

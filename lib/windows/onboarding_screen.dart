@@ -39,7 +39,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         child: Column(
           children: <Widget>[
             Expanded(
-              //  flex: 3,
               child: PageView.builder(
                 onPageChanged: (value) {
                   setState(() {
