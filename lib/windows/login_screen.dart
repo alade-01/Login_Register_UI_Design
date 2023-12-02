@@ -2,12 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../components/shared/app_button.dart';
+import '../../core/constants.dart';
 import '../../core/router_generator.dart';
 import '../../core/utilis.dart';
-import '../../core/constants.dart';
 import '../components/item/social_network_item.dart';
 import '../components/shared/background.dart';
-
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
 
@@ -28,174 +27,155 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Background(
-      child: Center(
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(20),
-            child: Align(
-              alignment: Alignment.center,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Text(
-                    "Login here",
-                    style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                        color: primaryColor,
-                        fontSize: 30,
-                        fontWeight: FontWeight.w700),
-                  ),
-                  const SizedBox(height: BUTTON_SEPARATION_SPACE * 2.5),
-                  Text(
-                    "Welcome back you’ve \n been missed!",
-                    style: Theme.of(context).textTheme.titleMedium!.copyWith(
-                        color: Colors.black,
-                        fontSize: 20,
-                        fontWeight: FontWeight.w600),
-                    textAlign: TextAlign.center,
-                  ),
-                  const SizedBox(height: BUTTON_SEPARATION_SPACE * 4.5),
-                  Form(
-                    key: formKey,
-                    child: Column(
-                      children: [
-                        Container(
-                          margin: const EdgeInsets.only(top: 10),
-                          child: TextFormField(
-                            controller: _emailController,
-                            // style: textStyleInput,
-                            validator: (String? value) {
-                              if (value != null && value.isEmpty) {
-                                return "This field is required";
-                              }
-                              if (value != null &&
-                                  value.isNotEmpty &&
-                                  !StringUtil.isValidEmail(value)) {
-                                return "The email is invalid";
-                              }
-                              return null;
-                            },
-                            decoration: const InputDecoration(
-                              prefixIcon: Icon(
-                                CupertinoIcons.at,
-                              ),
-                              hintText: "Email",
-                            ),
-                            keyboardType: TextInputType.text,
-                          ),
-                        ),
-                        Container(
-                          margin: const EdgeInsets.symmetric(vertical: 23),
-                          child: TextFormField(
-                            validator: (String? value) {
-                              if (value != null && value.isEmpty) {
-                                return "This field is required";
-                              }
-                              return null;
-                            },
-                            style: textStyleInput,
-                            controller: _passwordController,
-                            obscureText: _obscureText,
-                            decoration: InputDecoration(
-                              prefixIcon: const Icon(
-                                CupertinoIcons.lock,
-                              ),
-                              hintText: "Password",
-                              suffixIcon: GestureDetector(
-                                onTap: () {
-                                  setState(() {
-                                    _obscureText = !_obscureText;
-                                  });
-                                },
-                                child: Icon(
-                                  _obscureText
-                                      ? Icons.visibility_off
-                                      : Icons.visibility,
-                                ),
-                              ),
-                            ),
-                            keyboardType: TextInputType.text,
-                          ),
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
+      child: Padding(
+        padding: const EdgeInsets.all(20),
+        child: Column(
+          children: [
+            Expanded(
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      const SizedBox(height: BUTTON_SEPARATION_SPACE * 4),
+                      Text(
+                        "Welcome back",
+                        style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                            color: secondaryColor,
+                            fontSize: 24,
+                            fontWeight: FontWeight.w500),
+                      ),   Text(
+                        "sign in to access your account",
+                        style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                            color: secondaryColor,
+                            fontSize: 14,
+                            fontWeight: FontWeight.w300),
+                      ),
+                      const SizedBox(height: BUTTON_SEPARATION_SPACE * 2),
+                      Form(
+                        key: formKey,
+                        child: Column(
                           children: [
-                            InkWell(
-                              onTap: () {
-                                Navigator.pushNamed(context,
-                                    RouterGenerator.forgotPasswordRoute);
-                              },
-                              child: Padding(
-                                padding: const EdgeInsets.all(5),
-                                child: Text(
-                                  "Forgot your password?",
-                                  textAlign: TextAlign.center,
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .labelMedium!
-                                      .copyWith(
-                                          fontSize: 14,
-                                          color: primaryColor,
-                                          fontWeight: FontWeight.w600),
+                            Container(
+                              margin: const EdgeInsets.only(top: 0),
+                              child: TextFormField(
+                                controller: _emailController,
+                                style: textStyleInput,
+                                validator: (String? value) {
+                                  if (value != null && value.isEmpty) {
+                                    return "This field is required";
+                                  }
+                                  if (value != null &&
+                                      value.isNotEmpty &&
+                                      !StringUtil.isValidEmail(value)) {
+                                    return "The email is invalid";
+                                  }
+                                  return null;
+                                },
+                                decoration: const InputDecoration(
+                                  prefixIcon: Icon(
+                                    CupertinoIcons.at,
+                                  ),
+                                  hintText: "Enter your email",
                                 ),
+                                keyboardType: TextInputType.text,
                               ),
+                            ),
+                            Container(
+                              margin: const EdgeInsets.symmetric(vertical: 17),
+                              child: TextFormField(
+                                validator: (String? value) {
+                                  if (value != null && value.isEmpty) {
+                                    return "This field is required";
+                                  }
+                                  return null;
+                                },
+                                style: textStyleInput,
+                                controller: _passwordController,
+                                obscureText: _obscureText,
+                                decoration: InputDecoration(
+                                  prefixIcon: const Icon(
+                                    CupertinoIcons.lock,
+                                  ),
+                                  hintText: "Enter your password",
+                                  suffixIcon: GestureDetector(
+                                    onTap: () {
+                                      setState(() {
+                                        _obscureText = !_obscureText;
+                                      });
+                                    },
+                                    child: Icon(
+                                      _obscureText
+                                          ? Icons.visibility_off
+                                          : Icons.visibility,
+                                    ),
+                                  ),
+                                ),
+                                keyboardType: TextInputType.text,
+                              ),
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                InkWell(
+                                  onTap: () => Navigator.pushNamed(
+                                      context, RouterGenerator.forgotPasswordRoute),
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(5),
+                                    child: Text(
+                                      "Forgot password?",
+                                      textAlign: TextAlign.center,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .labelMedium!
+                                          .copyWith(
+                                          fontSize: 14,
+                                          color: const Color(0xFF6A707C),
+                                          fontWeight: FontWeight.w600),
+                                    ),
+                                  ),
+                                ),
+                              ],
                             ),
                           ],
                         ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(height: BUTTON_SEPARATION_SPACE * 2.8),
-                  AppButton(
-                    callback: () {
-                      if (formKey.currentState!.validate()) {}
-                    },
-                    label: "Sign in",
-                    buttonType: ButtonType.PRIMARY,
-                    width: size.width,
-                    horizontalPadding: 10,
-                  ),
-                  const SizedBox(height: BUTTON_SEPARATION_SPACE * 4),
-                  InkWell(
-                    onTap: () {
-                      Navigator.pushNamed(
-                          context, RouterGenerator.registerRoute);
-                    },
-                    child: Padding(
-                      padding: const EdgeInsets.all(0),
-                      child: Text(
-                        "Create new account",
-                        textAlign: TextAlign.center,
-                        style: Theme.of(context)
-                            .textTheme
-                            .labelMedium!
-                            .copyWith(
-                                fontSize: 14,
-                                color: const Color(0xFF494949),
-                                fontWeight: FontWeight.w600),
                       ),
-                    ),
+                      const SizedBox(height: BUTTON_SEPARATION_SPACE * 3),
+                      AppButton(
+                        callback: () {
+                          if (formKey.currentState!.validate()) {}
+                        },
+                        label: "Next",
+                        scrIcon: Icons.arrow_forward_ios_outlined,
+                        buttonType: ButtonType.PRIMARY,
+                        width: size.width,
+                      ),
+                    ],
                   ),
-                  const SizedBox(height: BUTTON_SEPARATION_SPACE * 7),
-                  Container(
-                      margin: const EdgeInsets.symmetric(horizontal: 10),
-                      child: Text(
-                        "Or continue with",
+                )),
+            GestureDetector(
+              onTap: () =>
+                  Navigator.pushNamed(context, RouterGenerator.registerRoute),
+              child: RichText(
+                text: TextSpan(
+                  text: 'New Member? ',
+                  style: Theme.of(context).textTheme.labelMedium!.copyWith(
+                      fontSize: 13,
+                      color: const Color(0xFF24282C),
+                      fontWeight: FontWeight.w500),
+                  children: <TextSpan>[
+                    TextSpan(
+                        text: ' Register now',
                         style: Theme.of(context)
                             .textTheme
                             .labelMedium!
                             .copyWith(
-                                fontSize: 14,
-                                color: primaryColor,
-                                fontWeight: FontWeight.w600),
-                      )),
-                  const SizedBox(height: BUTTON_SEPARATION_SPACE),
-                  const SocialNetworkItem(),
-                  const SizedBox(height: BUTTON_SEPARATION_SPACE),
-                ],
+                            fontSize: 13,
+                            color: primaryColor,
+                            fontWeight: FontWeight.w700))
+                  ],
+                ),
               ),
             ),
-          ),
+          ],
         ),
       ),
     );

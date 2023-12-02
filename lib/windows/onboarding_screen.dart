@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:login_register_ui_design/core/router_generator.dart';
 
 import '../components/item/onboardingItem.dart';
 import '../core/constants.dart';
@@ -26,7 +27,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     {
       "title": "Make connects\nwith explora",
       "text": "To your dream trip.",
-      "image": "res/images/onboardingImage_2.svg"
+      "image": "res/images/onboardingImage_3.svg"
     },
   ];
 
@@ -70,9 +71,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     ),
                         ),
                         InkWell(
-                          onTap: () {
-                            //print('Button pressed!');
-                          },
+                          onTap: () => Navigator.pushNamed(context, RouterGenerator.loginRoute),
                           child: Container(
                             width: 50.0,
                             height: 50.0,
