@@ -46,12 +46,15 @@ class _LoginScreenState extends State<LoginScreen> {
                         fontSize: 24,
                         fontWeight: FontWeight.w500),
                   ),
-                  Text(
-                    "sign in to access your account",
-                    style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                        color: secondaryColor,
-                        fontSize: 14,
-                        fontWeight: FontWeight.w300),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 5.0),
+                    child: Text(
+                      "sign in to access your account",
+                      style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                          color: secondaryColor,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w300),
+                    ),
                   ),
                   const SizedBox(height: BUTTON_SEPARATION_SPACE * 2),
                   Form(

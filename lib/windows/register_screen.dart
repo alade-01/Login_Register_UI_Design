@@ -47,12 +47,16 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             color: secondaryColor,
                             fontSize: 24,
                             fontWeight: FontWeight.w500),
-                      ),   Text(
-                        "by creating a free account",
-                        style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                            color: secondaryColor,
-                            fontSize: 14,
-                            fontWeight: FontWeight.w300),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 5.0),
+                        child: Text(
+                          "by creating a free account",
+                          style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                              color: secondaryColor,
+                              fontSize: 14,
+                              fontWeight: FontWeight.w300),
+                        ),
                       ),
                       const SizedBox(height: BUTTON_SEPARATION_SPACE * 2),
                       Form(

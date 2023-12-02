@@ -36,14 +36,16 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                   Text(
                     "Forgot Password",
                     style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                        color: primaryColor, fontSize: 24, fontWeight: FontWeight.w500),
+                        color: secondaryColor, fontSize: 24, fontWeight: FontWeight.w500),
                   ),
-                  const SizedBox(height: BUTTON_SEPARATION_SPACE * 1.7),
-                  Text(
-                    "Enter your email to receive the code to \n change your password",
-                    style: Theme.of(context).textTheme.titleMedium!.copyWith(
-                        color: Colors.black, fontSize: 14, fontWeight: FontWeight.w300),
-                    textAlign: TextAlign.center,
+                  Padding(
+                    padding: const EdgeInsets.only(top: 5.0),
+                    child: Text(
+                      "Enter your email to receive the code to \n change your password",
+                      style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                          color: secondaryColor, fontSize: 14, fontWeight: FontWeight.w300),
+                      textAlign: TextAlign.center,
+                    ),
                   ),
                   const SizedBox(height: BUTTON_SEPARATION_SPACE * 4.5),
                   Form(
