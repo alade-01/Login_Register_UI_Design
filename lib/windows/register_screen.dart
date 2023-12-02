@@ -183,7 +183,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                           fontWeight: FontWeight.w500),
                                       children: <TextSpan>[
                                         TextSpan(
-                                            text: 'Teams',
+                                            text: 'Teams ',
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .labelMedium!
