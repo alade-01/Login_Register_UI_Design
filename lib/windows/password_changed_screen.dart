@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:login_register_ui_design/components/shared/background.dart';
 
 import '../components/shared/app_button.dart';
 import '../core/constants.dart';
@@ -29,25 +28,27 @@ class _PasswordChangedScreenState extends State<PasswordChangedScreen> {
             children: <Widget>[
               SvgPicture.asset(
                 "res/images/background.svg",
-               // width: 100,
-              //  height: 100,
+                // width: 100,
+                //  height: 100,
               ),
-              const SizedBox(height: BUTTON_SEPARATION_SPACE * 4),
+              // const SizedBox(height: BUTTON_SEPARATION_SPACE * 4),
               Text(
                 "Password Changed! ",
                 style: Theme.of(context).textTheme.titleLarge!.copyWith(
                     color: secondaryColor,
-                    fontSize: 26,
-                    fontWeight: FontWeight.w700),
-              ),
-              const SizedBox(height: BUTTON_SEPARATION_SPACE * 1.5),
-              Text(
-                "Your password has been changed successfully.",
-                style: Theme.of(context).textTheme.titleMedium!.copyWith(
-                   // color: swatchColorItem,
-                    fontSize: 16,
+                    fontSize: 24,
                     fontWeight: FontWeight.w500),
-                textAlign: TextAlign.center,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 5.0),
+                child: Text(
+                  "Your password has been changed successfully.",
+                  style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                      color: secondaryColor,
+                      fontSize: 14,
+                      fontWeight: FontWeight.w300),
+                  textAlign: TextAlign.center,
+                ),
               ),
               const SizedBox(height: BUTTON_SEPARATION_SPACE * 3.5),
               AppButton(
