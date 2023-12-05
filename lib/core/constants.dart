@@ -24,13 +24,15 @@ const Color backgroundColors = Color.fromRGBO(219, 227, 230, 1);
 const MESSAGE_LOADING = "Chargement en cours";
 const MESSAGE_EMPTY = "Aucune donnée";
 
-const PRIMARY_FONT = "Poppins";
+const PRIMARY_FONT = "Montserrat";
 const SECONDARY_FONT = "Lato";
 const USED_FONT = PRIMARY_FONT;
 
 const defaultLetterSpacing = 0.03;
 
-TextStyle textStyleInput = TextStyle(color: secondaryColor, fontSize: 17);
+TextStyle textStyleInput =
+TextStyle(fontSize: 14,fontWeight: FontWeight.w400,
+  color: Colors.black.withOpacity(0.7));
 
 // 0xFF6C63FF #6C63FF
 Map<int, Color> color0 = {

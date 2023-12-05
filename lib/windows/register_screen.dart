@@ -18,9 +18,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   // This holds the state of the checkbox, we call setState and update this whenever a user taps the checkbox
   bool isChecked = false;
   //Initially password is obscure
-  bool _obscureTextFieldOne = true,
-      _obscureTextFieldTwo = true,
-      loading = false;
+  bool _obscureTextFieldOne = true, _obscureTextFieldTwo = true, loading = false;
 
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
@@ -190,7 +188,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                                 .copyWith(
                                                 fontSize: 13,
                                                 color: primaryColor,
-                                                fontWeight: FontWeight.w300)
+                                                fontWeight: FontWeight.w500)
                                         ),
                                         TextSpan(
                                             text: 'and ',
@@ -200,7 +198,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                                 .copyWith(
                                                 fontSize: 13,
                                                 color: secondaryColor,
-                                                fontWeight: FontWeight.w300)
+                                                fontWeight: FontWeight.w500)
                                         ),
                                         TextSpan(
                                             text: 'Conditions ',
@@ -210,7 +208,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                                 .copyWith(
                                                 fontSize: 13,
                                                 color: primaryColor,
-                                                fontWeight: FontWeight.w300)
+                                                fontWeight: FontWeight.w500)
                                         )
                                       ],
                                     ),
@@ -224,7 +222,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       const SizedBox(height: BUTTON_SEPARATION_SPACE * 3),
                       AppButton(
                         callback: () {
-                          if (formKey.currentState!.validate()) {}
+                          if (formKey.currentState!.validate()) {
+                            Navigator.pushNamed(context, RouterGenerator.loginRoute);
+                          }
                         },
                         label: "Sign up",
                         scrIcon: Icons.app_registration,

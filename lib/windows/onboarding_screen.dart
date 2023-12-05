@@ -53,42 +53,39 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 5),
-              child: Column(
-                children: <Widget>[
-                  const SizedBox(height: defaultPadding * 2),
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 50.0),
-                    child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Row(
-                            children: List.generate(
-                              onboardingData.length,
-                              (index) => buildDot(index: index),
+            Column(
+              children: <Widget>[
+                const SizedBox(height: defaultPadding * 2),
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 50.0),
+                  child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          children: List.generate(
+                            onboardingData.length,
+                            (index) => buildDot(index: index),
+                          ),
+                        ),
+                        InkWell(
+                          onTap: () => Navigator.pushNamed(
+                              context, RouterGenerator.loginRoute),
+                          child: Container(
+                            width: 50.0,
+                            height: 50.0,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: secondaryColor,
+                            ),
+                            child: const Icon(
+                              Icons.arrow_forward_ios_outlined,
+                              color: Colors.white,
                             ),
                           ),
-                          InkWell(
-                            onTap: () => Navigator.pushNamed(
-                                context, RouterGenerator.loginRoute),
-                            child: Container(
-                              width: 50.0,
-                              height: 50.0,
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: secondaryColor,
-                              ),
-                              child: const Icon(
-                                Icons.arrow_forward_ios_outlined,
-                                color: Colors.white,
-                              ),
-                            ),
-                          ),
-                        ]),
-                  ),
-                ],
-              ),
+                        ),
+                      ]),
+                ),
+              ],
             ),
           ],
         ),
