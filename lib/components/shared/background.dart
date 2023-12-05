@@ -20,7 +20,6 @@ class Background extends StatelessWidget {
         width: size.width,
         height: size.height,
         child: Stack(
-          alignment: Alignment.center,
           children: <Widget>[
             Positioned(
               top:60,

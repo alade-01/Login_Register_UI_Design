@@ -14,7 +14,7 @@ class OnboardingItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
+    //Size size = MediaQuery.of(context).size;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
@@ -25,22 +25,19 @@ class OnboardingItem extends StatelessWidget {
               ),
             )),
         Padding(
-          padding: const EdgeInsets.only(top: 1, bottom: 5),
+          padding: const EdgeInsets.only(bottom: 5),
           child: Text(
             title!,
             style: Theme.of(context).textTheme.titleLarge!.copyWith(
                 color: secondaryColor, fontSize: 36, fontWeight: FontWeight.w700),
           ),
         ),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 0),
-          child: Text(
-            text!,
-            style: Theme.of(context).textTheme.labelMedium!.copyWith(
-              color: secondaryColor, fontSize: 24, fontWeight: FontWeight.w300
-            ),
-            textAlign: TextAlign.center,
+        Text(
+          text!,
+          style: Theme.of(context).textTheme.labelMedium!.copyWith(
+            color: secondaryColor, fontSize: 24, fontWeight: FontWeight.w300
           ),
+          textAlign: TextAlign.center,
         )
       ],
     );
